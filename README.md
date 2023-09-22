@@ -4,14 +4,22 @@ This will eventually store variations of dev containers I make. Right now it's j
 
 ## TODO
 
-- [ ] Create a cookiecutter
-- [ ] Create image variations
-  -[x] Python
-  - [ ] Mamba
-  - [ ] PDM
+- [x] Create a cookiecutter
+- [x] Create image variations
+  - [x] Python
+  - [x] Mamba
+  - [x] PDM
 - [x] Fix init terminal `$ sh`
 - [ ] Example `docker-compose.yml`
   - [ ] Variations of `docker-compose.yml` files
+
+## Templates
+
+The [`cookiecutter`](./cookiecutter/) directory has `cookiecutter` templates for various dev container environments. To set up a dev container in a new project using one of these templates, point the cookiecutter command at this repository. For example, to set up a new `.devcontainer` directory in a local repository project using the `standard` template, you would run:
+
+`cookiecutter https://github.com/redjax/vscode_containers/cookiecutter/standard`
+
+This will create a directory `.devcontainer` with the files from [`./cookiecutter/standard/`](./cookiecutter/standard/) in the directory the `cookiecutter` command was run from. The files will be generated from the `cookiecutter` template, and are ready to use as-is after running the command.
 
 ## Links
 
