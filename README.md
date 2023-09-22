@@ -17,7 +17,7 @@ This will eventually store variations of dev containers I make. Right now it's j
 
 The [`cookiecutter`](./cookiecutter/) directory has `cookiecutter` templates for various dev container environments. To set up a dev container in a new project using one of these templates, point the cookiecutter command at this repository. For example, to set up a new `.devcontainer` directory in a local repository project using the `standard` template, you would run:
 
-`cookiecutter https://github.com/redjax/vscode_containers/cookiecutter/standard`
+`cookiecutter https://github.com/redjax/vscode_containers --directory="cookiecutter/standard"`
 
 This will create a directory `.devcontainer` with the files from [`./cookiecutter/standard/`](./cookiecutter/standard/) in the directory the `cookiecutter` command was run from. The files will be generated from the `cookiecutter` template, and are ready to use as-is after running the command.
 

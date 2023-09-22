@@ -2,7 +2,7 @@
 
 ## Installation
 
-`cookiecutter https://github.com/redjax/vscode_containers/cookiecutter/mamba`
+`cookiecutter https://github.com/redjax/vscode_containers --directory "cookiecutter/mamba"`
 
 ## Description
 
