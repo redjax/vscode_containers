@@ -73,7 +73,9 @@
     "postCreateCommand": "gcc -v",
     "mounts": [
         // Cache extensions by mounting the ~/.vscode directory
-        "source=./.container_share,target=/container_share,type=bind,consistency=cached"
+        "source=./.container_share,target=/container_share,type=bind,consistency=cached",
+        // Mount host's SSH dir so keys are available in container
+        "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
     ],
     "features": {
         // "azure-cli": "latest"
@@ -102,6 +104,7 @@
         "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
             "package": "pdm"
         },
-        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
+        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+        "ghcr.io/devcontainers/features/sshd:1": {}
     }
 }
