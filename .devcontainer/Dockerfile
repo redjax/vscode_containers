@@ -15,6 +15,7 @@ RUN apt update -y && apt upgrade -y --no-install-recommends \
     git \
     curl \
     wget \
+    openssh-server \
     iputils-ping \
     && apt-get autoremove -y \
     && apt-get clean -y \
