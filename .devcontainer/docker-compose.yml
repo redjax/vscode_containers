@@ -1,0 +1,39 @@
+## Compose stack for VSCode Dev Container
+
+version: "3.7"
+
+## "Anchor" with variables that can be references later
+#  https://github.com/0916dhkim/vscode-devcontainer-tutorial/blob/master/README.md#docker-composeyml
+x-environment: &default-environment
+  POSTGRES_USER: vscode
+  POSTGRES_PASSWORD: postgres
+  POSGRES_DB: tutorial
+
+volumes: pgdata
+
+services:
+
+  vscode-dev-container:
+    container_name: ${DEV_CONTAINER_PORT:-vscode-dev-container}
+    restart: unless-stopped
+    user: ${DEV_CONTAINER_USER:-vscode}
+    ## Keep container running
+    command: sleep-infinity
+    build:
+      context: ..
+      dockerfile: .devcontainer/${DOCKERFILE:-dev.Dockerfile}
+    environment:
+      <<: *default-environment
+      PORT: 3000
+    ports:
+      - ${DEV_CONTAINER_PORT:-3000}:3000
+    volumes: ..:/workspace
+  # db:
+  #   image: "postgres:12"
+  #   restart: unless-stopped
+  #   environment: *default-environment
+  #   ports:
+  #     - ${DEV_CONTAINER_PG_PORT:-5432}:5432
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #     - ../postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d

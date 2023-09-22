@@ -1,0 +1,79 @@
+{
+    "name": "VSCode Dev Container Test",
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined"
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "target": "dev"
+    },
+    "customizations": {
+        "settings": {
+            "terminal.integrated.scrollback": 100000,
+            "terminal.integrated.shell.linux": "/usr/bin/bash",
+            "terminal.integrated.defaultProfile.linux": "bash",
+            // "terminal.integrated.profiles.linux": {
+            //     "bash": {
+            //         "path": "/usr/bin/bash"
+            //     }
+            // },
+            "python.pythonPath": "/usr/local/bin/python"
+        },
+        "vscode": {
+            "extensions": [
+                "formulahendry.auto-complete-tag",
+                "rogalmic.bash-debug",
+                "mads-hartmann.bash-ide-vscode",
+                "samuelcolvin.jinjahtml",
+                "ms-python.black-formatter",
+                "jomeinaster.bracket-peek",
+                "ms-azuretools.vscode-docker",
+                "janisdd.vscode-edit-csv",
+                "tamasfe.even-better-toml",
+                "Wattenberger.footsteps",
+                "mhutchie.git-graph",
+                "ecmel.vscode-html-css",
+                "mohd-akram.vscode-html-format",
+                "bradgashler.htmltagwrap",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "VisualStudioExptTeam.vscodeintellicode-completions",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                "yzhang.markdown-all-in-one",
+                "ionutvmi.path-autocomplete",
+                "christian-kohler.path-intellisense",
+                "ms-dotnettools.dotnet-interactive-vscode",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "donjayamanne.python-environment-manager",
+                "donjayamanne.python-extension-pack",
+                "njqdev.vscode-python-typehint",
+                "mutantdino.resourcemonitor",
+                "charliermarsh.ruff",
+                "foxundermoon.shell-format",
+                "mtxr.sqltools",
+                "pflannery.vscode-versionlens",
+                "redhat.vscode-yaml"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    // Use 'appPort' to create a container with published ports. If the port isn't working, be sure
+    // your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
+    // "appPort": [],
+    "forwardPorts": [
+        3000
+    ],
+    // Uncomment the next line to run commands after the container is created.
+    "postCreateCommand": "gcc -v",
+    "mounts": [
+        // Cache extensions by mounting the ~/.vscode directory
+        "source=./.container_share,target=/container_share,type=bind,consistency=cached"
+    ],
+    "features": {
+        // "azure-cli": "latest"
+    }
+}
