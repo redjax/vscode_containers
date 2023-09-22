@@ -54,8 +54,6 @@ USER $USERNAME
 FROM stage AS dev
 ## Dev layer. Use "target": "dev" in .devcontainer.json
 #  to run this layer.
-ENV SHELL /bin/bash
-
 ENV ENV=dev
 ARG USERNAME
 ARG USER_UID
@@ -64,14 +62,15 @@ ARG DEBIAN_FRONTEND
 
 USER $USERNAME
 
+## Set the container's default shell to the /bin/bash
+ENV SHELL /bin/bash
+
 ENTRYPOINT ["/bin/bash"]
 
 ## Prod environment
 FROM stage AS prod
 ## Dev layer. Use "target": "dev" in .devcontainer.json
 #  to run this layer.
-ENV SHELL /bin/bash
-
 ENV ENV=prod
 ARG USERNAME
 ARG USER_UID
@@ -79,5 +78,8 @@ ARG USER_GID
 ARG DEBIAN_FRONTEND
 
 USER $USERNAME
+
+## Set the container's default shell to the /bin/bash
+ENV SHELL /bin/bash
 
 ENTRYPOINT ["/bin/bash"]
