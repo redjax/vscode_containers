@@ -19,6 +19,7 @@ services:
     user: ${DEV_CONTAINER_USER:-vscode}
     ## Keep container running
     command: sleep-infinity
+    env_file: devcontainer.env
     build:
       context: ..
       dockerfile: .devcontainer/${DOCKERFILE:-dev.Dockerfile}

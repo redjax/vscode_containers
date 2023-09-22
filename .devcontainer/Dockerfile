@@ -11,8 +11,8 @@ RUN apt update -y && apt upgrade -y --no-install-recommends \
     ca-certificates \
     apt-utils \
     dialog \
-    git \
     neovim \
+    git \
     curl \
     wget \
     iputils-ping \
@@ -32,7 +32,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 FROM setup AS stage
-## Staging layer. Create user account, copy files, etc
+## Staging layer. Create user account, copy files, setup sudo, etc
 
 ## Set DEBIAN_FRONTEND so apt can be used interactively when
 #  inside container
@@ -44,13 +44,17 @@ ARG USER_GID
 ARG DEBIAN_FRONTEND=dialog
 
 RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && mkdir -pv /etc/sudoers.d \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
 
 USER $USERNAME
 
 FROM stage AS dev
 ## Dev layer. Use "target": "dev" in .devcontainer.json
 #  to run this layer.
+ENV SHELL /bin/bash
 
 ENV ENV=dev
 ARG USERNAME
@@ -60,12 +64,13 @@ ARG DEBIAN_FRONTEND
 
 USER $USERNAME
 
-ENTRYPOINT ["/usr/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
 
 ## Prod environment
 FROM stage AS prod
 ## Dev layer. Use "target": "dev" in .devcontainer.json
 #  to run this layer.
+ENV SHELL /bin/bash
 
 ENV ENV=prod
 ARG USERNAME
@@ -75,4 +80,4 @@ ARG DEBIAN_FRONTEND
 
 USER $USERNAME
 
-ENTRYPOINT ["/usr/bin/bash"]
+ENTRYPOINT ["/bin/bash"]

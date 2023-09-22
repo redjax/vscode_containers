@@ -6,10 +6,10 @@ This will eventually store variations of dev containers I make. Right now it's j
 
 - [ ] Create a cookiecutter
 - [ ] Create image variations
-  - [ ] Python
+  -[x] Python
   - [ ] Mamba
   - [ ] PDM
-- [ ] Fix init terminal `$ sh`
+- [x] Fix init terminal `$ sh`
 - [ ] Example `docker-compose.yml`
   - [ ] Variations of `docker-compose.yml` files
 
@@ -27,3 +27,4 @@ This will eventually store variations of dev containers I make. Right now it's j
   - [Dev Containers Tips and Tricks](https://code.visualstudio.com/docs/devcontainers/tips-and-tricks)
   - [Advanced container configuration](https://code.visualstudio.com/remote/advancedcontainers/overview)
   - [FAQ](https://code.visualstudio.com/docs/devcontainers/faq)
+- [List of available dev container "features"](https://containers.dev/features)

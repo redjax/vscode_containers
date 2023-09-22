@@ -4,6 +4,8 @@
         "--cap-add=SYS_PTRACE",
         "--security-opt",
         "seccomp=unconfined"
+        // "--env-file"
+        // ".devctonainer/devcontainer.env"
     ],
     "build": {
         "dockerfile": "Dockerfile",
@@ -13,13 +15,12 @@
     "customizations": {
         "settings": {
             "terminal.integrated.scrollback": 100000,
-            "terminal.integrated.shell.linux": "/usr/bin/bash",
+            "terminal.integrated.profiles.linux": {
+                "bash": {
+                    "path": "/bin/bash"
+                }
+            },
             "terminal.integrated.defaultProfile.linux": "bash",
-            // "terminal.integrated.profiles.linux": {
-            //     "bash": {
-            //         "path": "/usr/bin/bash"
-            //     }
-            // },
             "python.pythonPath": "/usr/local/bin/python"
         },
         "vscode": {
@@ -61,6 +62,7 @@
         }
     },
     "remoteUser": "vscode",
+    "containerUser": "vscode",
     // Use 'appPort' to create a container with published ports. If the port isn't working, be sure
     // your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
     // "appPort": [],
@@ -75,5 +77,31 @@
     ],
     "features": {
         // "azure-cli": "latest"
+        // Run Docker inside the container, independent of host, for launching containers
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        // Miniforge with Mambaforge
+        "ghcr.io/rocker-org/devcontainer-features/miniforge:1": {},
+        // Install apt packages
+        // "ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+        //     "packages": [
+        //         "git",
+        //         "neovim",
+        //         "curl",
+        //         "wget",
+        //         "iputils-ping",
+        //         "build-essential",
+        //         "ca-certificates",
+        //         "apt-utils",
+        //         "dialog"
+        //     ]
+        // },
+        //Black formatter
+        "ghcr.io/devcontainers-contrib/features/black:2": {},
+        // Install packages with pipx
+        "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
+            "package": "pdm"
+        },
+        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
     }
 }
