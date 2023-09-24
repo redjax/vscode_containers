@@ -1,6 +1,6 @@
 {
     "devcontainer_dirname": ".devcontainer",
-    "devcontainer_img": "python:3.11-slim",
+    "devcontainer_img": "condaforge/mambaforge:latest",
     "devcontainer_user": "vscode",
     "devcontainer_uuid": 1000,
     "devcontainer_shell_name": "bash",

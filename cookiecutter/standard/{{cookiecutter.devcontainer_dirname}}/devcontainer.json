@@ -72,8 +72,6 @@
     // Uncomment the next line to run commands after the container is created.
     "postCreateCommand": "gcc -v",
     "mounts": [
-        // Cache extensions by mounting the ~/.vscode directory
-        "source=./.container_share,target=/container_share,type=bind,consistency=cached",
         // Mount host's SSH dir so keys are available in container
         "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
     ],
