@@ -9,7 +9,8 @@ x-environment: &default-environment
   POSTGRES_PASSWORD: postgres
   POSGRES_DB: tutorial
 
-volumes: pgdata
+volumes:
+  pgdata:
 
 services:
 
@@ -28,7 +29,8 @@ services:
       PORT: 3000
     ports:
       - ${DEV_CONTAINER_PORT:-3000}:3000
-    volumes: ..:/workspace
+    volumes:
+      - ..:/workspace:cached
   # db:
   #   image: "postgres:12"
   #   restart: unless-stopped
