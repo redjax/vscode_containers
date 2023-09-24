@@ -72,8 +72,6 @@
     // Uncomment the next line to run commands after the container is created.
     "postCreateCommand": "gcc -v",
     "mounts": [
-        // Cache extensions by mounting the ~/.vscode directory
-        "source=./.container_share,target=/container_share,type=bind,consistency=cached",
         // Mount host's SSH dir so keys are available in container
         "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
     ],
@@ -83,7 +81,7 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/git:1": {},
         // Miniforge with Mambaforge
-        "ghcr.io/rocker-org/devcontainer-features/miniforge:1": {},
+        // "ghcr.io/rocker-org/devcontainer-features/miniforge:1": {},
         // Install apt packages. These packages can be defined in the Dockerfile
         // as well. If you are installing packages in the Dockerfile,
         // don't add them here
